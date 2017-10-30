@@ -66,15 +66,12 @@ app.delete('/todos/:id', (req, res) => {
     }
     // if doc, send doc back with 200
     res.send({todo});
-
-  // }, (err) => {
-  //
-  // });
+    // error
   }).catch((e) => {
+    // 400 with empty body
     res.status(400).send();
   });
-    // error
-      // 400 with empty body
+
 });
 
 app.listen(port, () => {
