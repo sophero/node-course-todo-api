@@ -110,7 +110,7 @@ app.post('/users', (req, res) => {
   user.save().then(() => {
     return user.generateAuthToken();
   }).then((token) => {
-    // res.header allows you to set the key-value pair
+    // res.header allows you to set a key-value pair, whereas req.header returns the value for your key eg. 'x-auth'
     res.header('x-auth', token).send(user);
   }).catch((e) => {
     res.status(400).send(e);

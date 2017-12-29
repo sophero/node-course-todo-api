@@ -1,15 +1,35 @@
 const {SHA256} = require('crypto-js');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
-var data = {
-  id: 10
-}
+// Using bcryptjs:
+var password = '123abc';
 
-var token = jwt.sign(data, '123abc');
-console.log(token);
+// Generating hash. Salting is built into bcrypt so no need to store salt on server.
+bcrypt.genSalt(10, (err, salt) => {
+  bcrypt.hash(password, salt, (err, hash) => {
+    console.log(hash);
+  });
+});
 
-var decoded = jwt.verify(token, '123abc');
-console.log('Decoded:', decoded);
+var hashedPassword = '$2a$10$RBP8O.vws2kqcEJSBB9qYeTQtXyTQYtJeZboo/9BlLeL3e07cVOiG';
+
+bcrypt.compare(password, hashedPassword, (err, res) => {
+  console.log(res); // response variable: Boolean for pw match
+});
+
+
+
+// // Testing with jsonwebtoken:
+// var data = {
+//   id: 10
+// }
+//
+// var token = jwt.sign(data, '123abc');
+// console.log(token);
+//
+// var decoded = jwt.verify(token, '123abc');
+// console.log('Decoded:', decoded);
 
 // // Using crypto-js:
 // var message = "I am user number 4";
