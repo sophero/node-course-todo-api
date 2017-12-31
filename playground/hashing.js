@@ -30,6 +30,7 @@ bcrypt.compare(password, hashedPassword, (err, res) => {
 //
 // var decoded = jwt.verify(token, '123abc');
 // console.log('Decoded:', decoded);
+//
 
 // // Using crypto-js:
 // var message = "I am user number 4";

@@ -1,8 +1,8 @@
 const {User} = require('./../models/user');
 
 var authenticate = (req, res, next) => {
+  // req.header returns the value corresponding to the key that you pass it.
   var token = req.header('x-auth');
-  // req.header returns the value for the key that you want to fetch.
 
   User.findByToken(token).then((user) => {
     if (!user) {
